@@ -1,9 +1,11 @@
-import { StyleSheet, View } from "react-native";
+import { getAccessToken } from "@react-native-kakao/user";
+import { Button, StyleSheet, View } from "react-native";
 
 
 export default function GoogleLogin() {
   return (
     <View style={styles.container}>
+      <Button title="token" onPress={()=>getAccessToken().then(console.log)}></Button>
     </View>
   );
 }

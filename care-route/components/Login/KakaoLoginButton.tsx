@@ -1,22 +1,19 @@
 import { StyleSheet, View, Text, Image, Pressable } from "react-native";
-import { login } from "@react-native-kakao/user";
-import { initializeKakaoSDK } from "@react-native-kakao/core";
-import { useEffect } from "react";
-import { KaKao_Android_Key_Hash } from "../../config";
+import {  login } from "@react-native-kakao/user";
+import colors from "../../styles/colors";
 
 export default function KakaoLoginButton() {
-  useEffect(() => {
-    initializeKakaoSDK(KaKao_Android_Key_Hash);
-  });
-  const kakaoLogin = () => {
-    login().then(console.log).catch(console.error);
-  };
+
   return (
     <View style={styles.button}>
-      <Pressable onPress={kakaoLogin}>
+      <Pressable
+        onPress={() => {
+          login().then(console.log).catch(console.error);
+        }}
+      >
         <View style={styles.container}>
           <Image source={require("../../assets/icons/kakaoIcon.png")} style={styles.imageStyle} />
-          <Text>카톡 연동로그인</Text>
+          <Text style={styles.text}>카톡 연동로그인</Text>
         </View>
       </Pressable>
     </View>
@@ -32,10 +29,9 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 56,
     borderRadius: 8,
-    backgroundColor: "yellow",
+    backgroundColor: colors.yellow01,
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: "bold",
     flexDirection: "row",
   },
   imageStyle: {
@@ -44,5 +40,10 @@ const styles = StyleSheet.create({
     alignItems: "center", //중간정렬
     justifyContent: "center",
     marginRight: 5,
+  },
+  text: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: colors.gray07,
   },
 });
